@@ -1,0 +1,15 @@
+#lang racket
+(define (my-if-bad x y z) (if x y z))
+(define (f-wrong x)
+  (my-if-bad ( = x 0)
+             1
+             (* x (f-wrong (- x 1)))
+             )
+  )
+(define (my-if x y z) (if x (y 1) (z 1 )))
+(define (fac x)
+  (my-if ( = x 0 )
+         (lambda (y) 1)
+         (lambda (y) (* x (fac (- x 1))))
+         )
+  )

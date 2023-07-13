@@ -1,0 +1,15 @@
+#lang racket
+(define tree-sum
+  (lambda (exp)
+    (cond  ((null? exp) 0) 
+           ((number? (car exp)) (+ (car exp) (tree-sum (cdr exp)) ) )
+          (else (+ (tree-sum (car exp))
+                   (tree-sum (cdr exp))
+                   ))
+          )
+    )
+  )
+;(tree-sum '((1 2) (3 4)))
+;(tree-sum '(1 2))
+;(tree-sum '(1 (2 3)))
+;(tree-sum '((1 2) 3))
