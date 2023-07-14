@@ -74,3 +74,15 @@
     ))
 (define r2_1 (new subrational% [n 7]))
 ;(send r2_1 whole?6-broken )
+(define subrational2%
+  (class rational%
+    (super-new)
+    (inherit double!)
+    (inherit whole?3)
+    (inherit get-denominator)
+    ;(inherit woiufoiewf)
+    ;(inherit denominator)
+    (define/public (whole?7) (whole?3))
+    (define/public (quadruple!)
+      (send this double!)
+      (double!))))
