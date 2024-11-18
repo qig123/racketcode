@@ -1,0 +1,10 @@
+#lang racket
+;
+(define atom? (lambda (x) (and (not (pair? x)) (not (null? x)))))
+(define (lat? lst)
+  (cond
+    [(null? lst) #true]
+    [#t
+     (atom? (car lst))
+     (lat? (cdr lst))
+     #false]))

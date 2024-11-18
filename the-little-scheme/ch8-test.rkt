@@ -1,0 +1,31 @@
+#lang racket
+(require "ch8.rkt")
+(require rackunit)
+(define tests
+  (test-suite "ch3 Tests"
+    (check-equal? ((rember-f equal?) '(pop corn) '(lemonade (pop corn) and (cake)))
+                  '(lemonade and (cake))
+                  "rember-f test")
+    (check-equal? ((insertL-f eq?) 'topping 'fudge '(ice cream with fudge for dessert))
+                  '(ice cream with topping fudge for dessert) "insertL test")
+    (check-equal? ((insertR-f eq?) 'topping 'fudge '(ice cream with fudge for dessert))
+                  '(ice cream with fudge topping for dessert) "insertR test")
+    (check-equal? (insertR2  'topping 'fudge '(ice cream with fudge for dessert))
+                  '(ice cream with fudge topping for dessert) "insertR2 test")
+    (check-equal? (insertL2 'topping 'fudge '(ice cream with fudge for dessert))
+                  '(ice cream with topping fudge for dessert) "insertL2 test")
+    (check-equal? ((multirember-f eq?) 'tuna '(shrimp salad tuna salad and tuna))
+                  '(shrimp salad salad and ) "multirember-f test")
+    (check-equal? (multirember-f2 '(shrimp salad tuna salad and tuna))
+                  '(shrimp salad salad and ) "multirember-f2 test")
+    (check-equal? (multiinsertLR 'topping 'cream 'fudge '(ice cream with fudge for cream dessert))
+                  '(ice topping cream with fudge topping for topping cream dessert) "insertLR test")
+    (check-equal? (multiinsertLR&co 'topping 'cream 'fudge '(ice cream with fudge for cream dessert) insert-col)
+                  '(ice topping cream with fudge topping for topping cream dessert) "insertLR&co test")
+    (check-equal? (evens-only* '((9 1 2 8) 3 10 ((9 9) 7 6) 2))
+                  '((2 8) 10 (() 6) 2 ) "evens-only* test")
+    ))
+
+(require rackunit/text-ui)
+;; runs the test
+(run-tests tests)
